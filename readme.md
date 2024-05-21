@@ -1,11 +1,11 @@
 
-# labo 5 carrousel
+# TP2 carrousel
 
 # Marguerite Demontigny
 # groupe 2
 
 ### desrciption
-faire des boutons radio afin de changer les images du carrousel
+faire un carrousel pour voir les images de la galerie
 
 ### ma github page
 https://maggied20.github.io/4w4/
