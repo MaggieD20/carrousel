@@ -1,5 +1,5 @@
 (function () {
-    console.log("jcxvdsjv");
+
     let carrousel = document.querySelector(".carrousel");
     let bouton = document.querySelector(".bouton__ouvrir");
     let carrousel__x = document.querySelector(".carrousel__x");
@@ -7,75 +7,110 @@
     let galerie = document.querySelector(".galerie");
 
     let carrousel__figure = document.querySelector(".carrousel__figure");
-    // console.log(carrousel__figure.tagName);
-    let galerie__img = galerie.querySelectorAll("img"); //collection des images
+    let galerie__img = galerie.querySelectorAll("img"); // Collection des images
 
     let carrousel__form = document.querySelector(".carrousel__form");
 
+    // Aller chercher les flèches
     let bouton_gauche = document.querySelector(".fleche_gauche");
     let bouton_droite = document.querySelector(".fleche_droite");
-    bouton_gauche.addEventListener("mousedown", ReculerImage());
+
+    // Variables pour gérer l'index de l'image actuelle
+    let currentIndex = 0;
+    let totalImages = galerie__img.length;
+
+    // Ajouter un event listener aux flèches
+    bouton_gauche.addEventListener("mousedown", function () {
+        ReculerImage();
+    });
+    bouton_droite.addEventListener("mousedown", function () {
+        AvancerImage();
+    });
 
     bouton.addEventListener("mousedown", function () {
         carrousel.classList.add("carrousel--ouvrir");
-    })
+    });
     carrousel__x.addEventListener("mousedown", function () {
         carrousel.classList.remove("carrousel--ouvrir");
-    })
+    });
 
+    // Créer les images et les boutons radios du carrousel
     let index = 0;
     for (const elm of galerie__img) {
-
         creer_image_carrousel(index, elm);
         creer_radio_carrousel(index);
         index++;
     }
 
     /**
-           * creer une image du carrousel à partir d'une image de la galerie
-           * @param {*} index numérode l,image
-           * @param {*} elm image de la galerie
-           */
+     * Créer une image du carrousel à partir d'une image de la galerie
+     * @param {*} index numéro de l'image
+     * @param {*} elm image de la galerie
+     */
     function creer_image_carrousel(index, elm) {
         let carrousel__img = document.createElement("img");
         carrousel__img.classList.add("carrousel__img");
         carrousel__img.dataset.index = index;
         carrousel__img.src = elm.src;
+        if (index !== 0) {
+            carrousel__img.style.opacity = 0;
+        }
         carrousel__figure.appendChild(carrousel__img);
     }
 
     /**
-     * creer les boutons radios dans le carrousel
+     * Créer les boutons radios dans le carrousel
      * @param {*} index numéro radio bouton
      */
-    function creer_radio_carrousel() {
-        // creer nouvel input
+    function creer_radio_carrousel(index) {
+        // Créer nouvel input
         let carrousel__radio = document.createElement("input");
-        // modifier le type = radio
+        // Modifier le type = radio
         carrousel__radio.type = 'radio';
-        // name
+        // Name
         carrousel__radio.name = 'btn__radio';
-        // dataset index
+        // Dataset index
         carrousel__radio.dataset.index = index;
-        // ajouter le radiocarrousel au formulaire
+        // Ajouter le radiocarrousel au formulaire
         carrousel__form.appendChild(carrousel__radio);
-        // écouteur evenement 'change'
+        // Écouteur événement 'change'
         carrousel__radio.addEventListener("change", function (e) {
             for (const elm of carrousel__figure.children) {
                 elm.style.opacity = 0;
             }
             carrousel__figure.children[e.target.dataset.index].style.opacity = 1;
         });
-        // initialiser le style.opacity=0; pour l'ensemble des images 
-        // initialise l'image sélectionnée à stylle.opacity=1;
 
     }
+
 
     function ReculerImage() {
-
-
-
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = totalImages - 1;
+        }
+        ChangerImageCarrousel();
     }
 
-})()
+    function AvancerImage() {
+        currentIndex++;
+        if (currentIndex >= totalImages) {
+            currentIndex = 0;
+        }
+        ChangerImageCarrousel();
+    }
 
+    function ChangerImageCarrousel() {
+        changeImage(currentIndex);
+        carrousel__form.querySelector(`input[data-index="${currentIndex}"]`).checked = true;
+    }
+
+    function changeImage(nouvelIndex) {
+        for (const elm of carrousel__figure.children) {
+            elm.style.opacity = 0;
+        }
+        carrousel__figure.children[nouvelIndex].style.opacity = 1;
+        currentIndex = nouvelIndex;
+    }
+
+})();
