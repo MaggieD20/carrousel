@@ -37,8 +37,14 @@
     // Créer les images et les boutons radios du carrousel
     let index = 0;
     for (const elm of galerie__img) {
+        elm.dataset.index = index;
         creer_image_carrousel(index, elm);
         creer_radio_carrousel(index);
+        elm.addEventListener("mousedown", function (e) {
+            currentIndex = e.target.dataset.index;
+            carrousel.classList.add("carrousel--ouvrir");
+            changeImage(currentIndex);
+        })
         index++;
     }
 
