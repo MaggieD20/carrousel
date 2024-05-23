@@ -12,6 +12,10 @@
 
     let carrousel__form = document.querySelector(".carrousel__form");
 
+    let bouton_gauche = document.querySelector(".fleche_gauche");
+    let bouton_droite = document.querySelector(".fleche_droite");
+    bouton_gauche.addEventListener("mousedown", ReculerImage());
+
     bouton.addEventListener("mousedown", function () {
         carrousel.classList.add("carrousel--ouvrir");
     })
@@ -67,7 +71,7 @@
 
     }
 
-    function changer_image_carrousel() {
+    function ReculerImage() {
 
 
 
