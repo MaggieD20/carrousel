@@ -1,0 +1,49 @@
+.carrousel {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    border: 3px solid black;
+    background-color: rgba(0, 0, 0, .1);
+
+    transform: scale(0);
+    transition: transform() .25s;
+
+    z-index: 2;
+}
+
+.carrousel__x {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    z-index: 10;
+}
+
+.carrousel--ouvrir {
+    transform: scale(1);
+}
+
+.carrousel__figure {
+    width: 100%;
+    height: 100%;
+}
+
+.carrousel__img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+// .carrousel__img::before{
+//     content: "";
+//     position:sticky;
+//     top: 0;
+//     left: 0;
+//     background-color: rgba(0, 0, 0, 0.18);
+// }
