@@ -16,7 +16,7 @@
     let bouton_droite = document.querySelector(".fleche_droite");
 
     // Variables pour gérer l'index de l'image actuelle
-    let currentIndex = 0;
+    let indexCourant = 0;
     let totalImages = galerie__img.length;
 
     // Ajouter un event listener aux flèches
@@ -41,9 +41,9 @@
         creer_image_carrousel(index, elm);
         creer_radio_carrousel(index);
         elm.addEventListener("mousedown", function (e) {
-            currentIndex = e.target.dataset.index;
+            indexCourant = e.target.dataset.index;
             carrousel.classList.add("carrousel--ouvrir");
-            changeImage(currentIndex);
+            changeImage(indexCourant);
         })
         index++;
     }
@@ -91,24 +91,24 @@
 
 
     function ReculerImage() {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = totalImages - 1;
+        indexCourant--;
+        if (indexCourant < 0) {
+            indexCourant = totalImages - 1;
         }
         ChangerImageCarrousel();
     }
 
     function AvancerImage() {
-        currentIndex++;
-        if (currentIndex >= totalImages) {
-            currentIndex = 0;
+        indexCourant++;
+        if (indexCourant >= totalImages) {
+            indexCourant = 0;
         }
         ChangerImageCarrousel();
     }
 
     function ChangerImageCarrousel() {
-        changeImage(currentIndex);
-        carrousel__form.querySelector(`input[data-index="${currentIndex}"]`).checked = true;
+        changeImage(indexCourant);
+        carrousel__form.querySelector(`input[data-index="${indexCourant}"]`).checked = true;
     }
 
     function changeImage(nouvelIndex) {
@@ -116,7 +116,7 @@
             elm.style.opacity = 0;
         }
         carrousel__figure.children[nouvelIndex].style.opacity = 1;
-        currentIndex = nouvelIndex;
+        indexCourant = nouvelIndex;
     }
 
 })();
