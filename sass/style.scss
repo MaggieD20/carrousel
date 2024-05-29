@@ -1,10 +1,11 @@
 .carrousel {
-    position: absolute;
+    position: fixed;
     width: 50%;
     height: 50%;
     top: 25%;
     left: 25%;
-    border: 3px solid black;
+    border: 5px solid #0d59f2;
+    border-radius: 5px;
     background-color: rgba(0, 0, 0, .1);
 
     transform: scale(0);
@@ -40,12 +41,23 @@
     position: absolute;
 }
 
-.carrousel--ouvrir {}
+.fleches {
+    background-color: #0dccf2;
+    border: 2px solid #0d59f2;
+    color: #0d59f2;
+    border-radius: 5px;
+}
 
-// .carrousel__img::before{
-//     content: "";
-//     position:sticky;
-//     top: 0;
-//     left: 0;
-//     background-color: rgba(0, 0, 0, 0.18);
-// }
+.fleches:hover {
+    background-color: #6adbf2;
+}
+
+.boutons_carrousel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carrousel__form {
+    display: flex;
+    align-items: center;
+}

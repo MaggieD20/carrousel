@@ -45,10 +45,11 @@ function genere_html()
        <div class="carrousel">
        <button class="carrousel__x">X</button>
        <figure class="carrousel__figure"></figure> 
+       <div class="boutons_carrousel">
        <button class="fleches fleche_gauche">&#8592;</button>
        <form class="carrousel__form"></form>
        <button class="fleches fleche_droite">&#8594;</button>
-       
+        </div>
        </div>';
     return $contenu;
 
