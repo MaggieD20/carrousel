@@ -1,5 +1,7 @@
 (function () {
 
+
+
     let carrousel = document.querySelector(".carrousel");
     let carrousel__x = document.querySelector(".carrousel__x");
 
@@ -17,6 +19,8 @@
     // Variables pour gérer l'index de l'image actuelle
     let indexCourant = 0;
     let totalImages = galerie__img.length;
+
+
 
     // Ajouter un event listener aux flèches
     bouton_gauche.addEventListener("mousedown", function () {
@@ -85,7 +89,6 @@
 
     }
 
-
     function ReculerImage() {
         indexCourant--;
         if (indexCourant < 0) {
@@ -112,6 +115,11 @@
             elm.style.opacity = 0;
         }
         carrousel__figure.children[nouvelIndex].style.opacity = 1;
+        // les dimensions de l'image
+        let image_width = carrousel__figure.children[nouvelIndex].naturalWidth;
+        let image_height = carrousel__figure.children[nouvelIndex].naturalHeight;
+        console.log(image_height);
+        console.log(image_width);
         indexCourant = nouvelIndex;
     }
 
