@@ -131,7 +131,12 @@
         let img_affichee_w = window_width / 2;
 
         let ratio_img = image_width / img_affichee_w;
-        let img_affichee_h = image_height / ratio_img;
+        let img_affichee_h;
+        if (ratio_img > 1) {
+            img_affichee_h = image_height / ratio_img;
+        } else {
+            img_affichee_h = image_height * ratio_img;
+        }
 
 
         console.log(img_affichee_w + " , " + img_affichee_h);
