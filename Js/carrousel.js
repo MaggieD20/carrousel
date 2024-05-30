@@ -115,16 +115,27 @@
             elm.style.opacity = 0;
         }
         carrousel__figure.children[nouvelIndex].style.opacity = 1;
+
         // les dimensions de l'image
         let image_width = carrousel__figure.children[nouvelIndex].naturalWidth;
         let image_height = carrousel__figure.children[nouvelIndex].naturalHeight;
         console.log("image height " + image_height);
         console.log("image width " + image_width);
 
+        // dimensions du navigateur
         let window_width = window.innerWidth;
         let window_height = window.innerHeight;
         console.log(window_width + " window width")
         console.log(window_height + " window height")
+
+        let img_affichee_w = window_width / 2;
+
+        let ratio_img = image_width / img_affichee_w;
+        let img_affichee_h = image_height / ratio_img;
+
+
+        console.log(img_affichee_w + " , " + img_affichee_h);
+        console.log(img_affichee_h);
 
 
 
