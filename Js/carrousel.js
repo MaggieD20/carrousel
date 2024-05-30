@@ -118,8 +118,16 @@
         // les dimensions de l'image
         let image_width = carrousel__figure.children[nouvelIndex].naturalWidth;
         let image_height = carrousel__figure.children[nouvelIndex].naturalHeight;
-        console.log(image_height);
-        console.log(image_width);
+        console.log("image height " + image_height);
+        console.log("image width " + image_width);
+
+        let window_width = window.innerWidth;
+        let window_height = window.innerHeight;
+        console.log(window_width + " window width")
+        console.log(window_height + " window height")
+
+
+
         indexCourant = nouvelIndex;
     }
 
