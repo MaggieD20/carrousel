@@ -90,7 +90,9 @@
     }
 
     function ReculerImage() {
+        // changer l'index
         indexCourant--;
+        // retourner à la fin si on est au début
         if (indexCourant < 0) {
             indexCourant = totalImages - 1;
         }
@@ -98,7 +100,9 @@
     }
 
     function AvancerImage() {
+        // changer l'index
         indexCourant++;
+        // retourner au début si on est à la fin
         if (indexCourant >= totalImages) {
             indexCourant = 0;
         }
@@ -114,35 +118,32 @@
         for (const elm of carrousel__figure.children) {
             elm.style.opacity = 0;
         }
+        // afficher l'image
         carrousel__figure.children[nouvelIndex].style.opacity = 1;
 
         // les dimensions de l'image
         let image_width = carrousel__figure.children[nouvelIndex].naturalWidth;
         let image_height = carrousel__figure.children[nouvelIndex].naturalHeight;
-        console.log("image height " + image_height);
-        console.log("image width " + image_width);
 
         // dimensions du navigateur
         let window_width = window.innerWidth;
         let window_height = window.innerHeight;
-        console.log(window_width + " window width")
-        console.log(window_height + " window height")
 
+        // calculer la taille de l'image
         let img_affichee_w = window_width / 2;
 
-        let ratio_img = image_width / img_affichee_w;
-        let img_affichee_h;
-        if (ratio_img > 1) {
-            img_affichee_h = image_height / ratio_img;
-        } else {
-            img_affichee_h = image_height * ratio_img;
+        // calculer la hauteur de l'image
+        let img_affichee_h = image_height * img_affichee_w / image_width;
+
+        if (img_affichee_h > window_height) {
+            img_affichee_h = window_height / 2;
+            img_affichee_w = image_width * img_affichee_h / image_height;
         }
 
-
-        console.log(img_affichee_w + " , " + img_affichee_h);
-        console.log(img_affichee_h);
-
-
+        carrousel.style.height = img_affichee_h + "px";
+        carrousel.style.width = img_affichee_w + "px";
+        carrousel.style.top = (window_height - img_affichee_h) / 2 + "px";
+        carrousel.style.left = (window_width - img_affichee_w) / 2 + "px";
 
         indexCourant = nouvelIndex;
     }
